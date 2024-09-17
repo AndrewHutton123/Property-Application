@@ -1,11 +1,11 @@
 import React from "react";
 import connectDB from "@/config/database";
-import Property from "@/models/property";
+import Property, { PropertyModel } from "@/models/property";
 import PropertyCard from "@/components/PropertyCard";
 
 const PropertiesPage = async () => {
   await connectDB();
-  const properties = await Property.find({});
+  const properties: PropertyModel[] = await Property.find({});
 
   console.log(properties);
 
