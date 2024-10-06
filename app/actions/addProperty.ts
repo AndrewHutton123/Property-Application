@@ -77,4 +77,4 @@ async function addProperty(formData: FormData) {
   redirect(`/properties/${newProperty._id}`);
 }
 
-export default { addProperty };
+export default addProperty;
