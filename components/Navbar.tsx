@@ -92,7 +92,7 @@ const Navbar = () => {
                 </Link>
                 {session && (
                   <Link
-                    href="/proporties/add"
+                    href="/properties/add"
                     className={`${
                       pathname === "/proporties/add" ? "bg-black" : ""
                     } text-white  hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
@@ -186,18 +186,20 @@ const Navbar = () => {
                     aria-labelledby="user-menu-button"
                   >
                     <Link
-                      href="/profile.html"
+                      href="/profile"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       id="user-menu-item-0"
+                      onClick={() => setIsProfileMenuOpen(false)}
                     >
                       Your Profile
                     </Link>
                     <Link
-                      href="/saved-properties.html"
+                      href="/saved-properties"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       id="user-menu-item-2"
+                      onClick={() => setIsProfileMenuOpen(false)}
                     >
                       Saved Properties
                     </Link>
