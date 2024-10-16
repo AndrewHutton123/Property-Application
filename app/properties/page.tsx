@@ -2,10 +2,30 @@ import React from "react";
 import connectDB from "@/config/database";
 import Property, { PropertyModel } from "@/models/property";
 import PropertyCard from "@/components/PropertyCard";
+import Pagination from "@/components/Pagination";
 
-const PropertiesPage = async () => {
+type PageProps = {
+  searchParams: {
+    page: number;
+    pageSize: number;
+  };
+};
+
+const PropertiesPage = async ({ searchParams }: PageProps) => {
   await connectDB();
-  const properties: PropertyModel[] = await Property.find({});
+
+  searchParams.page = 1;
+  searchParams.pageSize = 10;
+
+  const skip = (searchParams.page - 1) * searchParams.pageSize;
+
+  const totalPages = await Property.countDocuments({});
+
+  const properties: PropertyModel[] = await Property.find({})
+    .skip(skip)
+    .limit(searchParams.pageSize);
+
+  const showPagination = totalPages > searchParams.pageSize;
 
   return (
     <section className="px-4 py-6">
@@ -18,6 +38,11 @@ const PropertiesPage = async () => {
               <PropertyCard key={property._id} property={property} />
             ))}
           </div>
+        )}
+        {showPagination && (
+          <Pagination
+            pageParams={{ ...searchParams, totalItems: totalPages }}
+          />
         )}
       </div>
     </section>
