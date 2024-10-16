@@ -31,7 +31,7 @@ async function deleteProperty(propertyId: string) {
   //Extract public id from image URLs
 
   const publicIds = property.images.map((imageUrl: string) => {
-    const imageUrlId: string[] = imageUrl.split("/");
+    const imageUrlId: any = imageUrl.split("/");
 
     return imageUrlId.at(-1).split(".").at(0);
   });

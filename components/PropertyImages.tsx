@@ -3,7 +3,11 @@ import React from "react";
 import Image from "next/image";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-const PropertyImages = ({ images }) => {
+type PageProps = {
+  images: any[];
+};
+
+const PropertyImages = ({ images }: PageProps) => {
   return (
     <Gallery>
       <section className="bg-blue-50 p-4">

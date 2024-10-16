@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
+import React, { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
 
-const AuthProvider = ({ children }) => {
+type PageProps = {
+  children: ReactNode;
+};
+
+const AuthProvider = ({ children }: PageProps) => {
   return <SessionProvider>{children}</SessionProvider>;
 };
 

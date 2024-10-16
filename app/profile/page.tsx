@@ -11,7 +11,7 @@ const ProfilePage = async () => {
 
   const sessionUser = await getSessionUser();
 
-  const { userId } = sessionUser;
+  const userId = sessionUser?.userId;
 
   if (!userId) {
     throw new Error("User Id is required");

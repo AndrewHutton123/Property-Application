@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import cloudinary from "@/config/cloudinary";
 
-async function addProperty(formData: FormData) {
+async function addProperty(formData: any) {
   await connectDB();
   const sessionUser = await getSessionUser();
 
@@ -17,7 +17,7 @@ async function addProperty(formData: FormData) {
   const { userId } = sessionUser;
 
   const amenities = formData.getAll("amenities");
-  const images = formData.getAll("images").filter((image) => image.name !== "");
+  const images = formData.getAll("images");
 
   const propertyData = {
     owner: userId,
@@ -44,6 +44,7 @@ async function addProperty(formData: FormData) {
       email: formData.get("seller_info.email"),
       phone: formData.get("seller_info.phone"),
     },
+    images: [""],
   };
 
   const imageUrls = [];

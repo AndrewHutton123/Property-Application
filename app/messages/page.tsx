@@ -10,7 +10,11 @@ const MessagesPage = async () => {
 
   const sessionUser = await getSessionUser();
 
-  const { userId } = sessionUser;
+  const userId = sessionUser?.userId;
+
+  if (!userId) {
+    throw new Error("User Id is required");
+  }
 
   const readMessages = await Message.find({ recipient: userId, read: true })
     .sort({ createdAt: -1 })

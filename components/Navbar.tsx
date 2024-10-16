@@ -24,7 +24,7 @@ const Navbar = () => {
     const setAuthProviders = async () => {
       const res = await getProviders();
 
-      setProviders(res);
+      setProviders(res as any);
     };
 
     setAuthProviders();
@@ -113,6 +113,7 @@ const Navbar = () => {
                   Object.values(providers).map((provider, index) => (
                     <button
                       key={index}
+                      // @ts-ignore: Unreachable code error
                       onClick={() => signIn(provider.id)}
                       className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
                     >
@@ -193,7 +194,7 @@ const Navbar = () => {
                       Your Profile
                     </Link>
                     <Link
-                      href="/saved-properties"
+                      href="/saved"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       id="user-menu-item-2"

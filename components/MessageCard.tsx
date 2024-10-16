@@ -6,11 +6,15 @@ import markMessageAsRead from "@/app/actions/markMessageAsRead";
 import deleteMessage from "@/app/actions/deleteMessage";
 import { useGlobalContext } from "@/context/globalContext";
 
-const MessageCard = ({ message }) => {
+type PageProps = {
+  message: any;
+};
+
+const MessageCard = ({ message }: PageProps) => {
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
 
-  const { setUnreadCount } = useGlobalContext();
+  const { setUnreadCount }: any = useGlobalContext();
 
   const handleReadClick = async () => {
     const read = await markMessageAsRead(message._id);

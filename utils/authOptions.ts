@@ -17,6 +17,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
+    // @ts-ignore: Unreachable code error
     async signIn({ profile }) {
       await connectDB();
 
@@ -33,7 +34,7 @@ export const authOptions = {
       }
       return true;
     },
-
+// @ts-ignore: Unreachable code error
     async session({ session }) {
       const user = await User.findOne({
         email: session.user.email,

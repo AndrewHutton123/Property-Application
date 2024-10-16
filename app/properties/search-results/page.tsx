@@ -18,7 +18,7 @@ const SearchResultsPage = async ({ searchParams }: PageProps) => {
 
   const locationPattern = new RegExp(searchParams.location, "i");
 
-  let query = {
+  let query: any = {
     $or: [
       { name: locationPattern },
       { description: locationPattern },
